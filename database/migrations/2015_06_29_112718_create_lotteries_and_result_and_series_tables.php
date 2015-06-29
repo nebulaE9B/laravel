@@ -14,7 +14,7 @@ class CreateLotteriesAndResultAndSeriesTables extends Migration {
 	{
 		Schema::create('lotteries', function(Blueprint $table)
 		{
-			$table->increments('id');
+			$table->bigIncrements('id');
 			$table->string('name', 200);
 			$table->string('draw_time', 4)->unique();
 			$table->timestamps();
@@ -22,7 +22,7 @@ class CreateLotteriesAndResultAndSeriesTables extends Migration {
 
 		Schema::create('series', function(Blueprint $table)
 		{
-			$table->increments('id');
+			$table->bigIncrements('id');
 			$table->string('code', 1);
 			$table->string('numbers', 2);
 			$table->timestamps();
@@ -30,11 +30,11 @@ class CreateLotteriesAndResultAndSeriesTables extends Migration {
 
 		Schema::create('result', function(Blueprint $table)
 		{
-			$table->increments('id');
+			$table->bigIncrements('id');
 			$table->dateTime('date');
-			$table->integer('lottery_id')->unsigned()->default(0);
+			$table->bigIncrements('lottery_id')->unsigned();
 			$table->foreign('lottery_id')->references('id')->on('lotteries')->onDelete('cascade');
-			$table->integer('series_id')->unsigned()->default(0);
+			$table->bigIncrements('series_id')->unsigned();
 			$table->foreign('series_id')->references('id')->on('series')->onDelete('cascade');
 			$table->string('winning_number', 2);
 			$table->timestamps();
