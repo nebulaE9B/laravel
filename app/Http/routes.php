@@ -17,13 +17,14 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('/admin', 'HomeController@index');
 
+// Route::group(array('prefix' => 'admin'), function() {
+
+	Route::resource('lotteries/manage', 'LotteriesController');
+
+// });
+
 Route::controllers([
 	'admin' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
 
-Route::group(array('prefix' => 'admin'), function() {
-
-	Route::resource('lotteries/manage', 'LotteriesController');
-
-});

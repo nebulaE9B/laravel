@@ -7,7 +7,7 @@
 			<th style="text-align: center;">Action</th>
 		</tr>
 		<tr>
-			<td><input type="text" class="form-control" name="lottery-name" value=""></td>
+			<td><input type="text" class="form-control" name="name" value=""></td>
 			<td><input type="number" class="form-control" style="width: 45%;" placeholder="HH" name="hh" value=""> : <input type="number" class="form-control" style="width: 45%;" placeholder="MM" name="mm" value=""></td>
 			<td><a href="#">X</a> <button type="submit" class="btn btn-primary" style="margin-right: 15px;">Save</button></td>
 		</tr>

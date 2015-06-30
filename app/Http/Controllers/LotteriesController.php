@@ -19,14 +19,15 @@ class LotteriesController extends Controller {
 	 */
 
 	protected $rules = [
-        'lottery-name' => ['required'],
+        'name' => ['required'],
         'hh' => ['required'],
-        // 'mm' => ['required'],
+        'mm' => ['required'],
     ];
 
 	public function index()
 	{
-		return view('lotteries.manage');
+		$lotteries = Lottery::all();
+		return view('lotteries.manage', compact('lotteries'));
 	}
 
 	/**
@@ -48,9 +49,26 @@ class LotteriesController extends Controller {
 	{
 		$this->validate($request, $this->rules);
         $input = Input::all();
+        if($input['hh'] < 10 ){
+        	$input['hh'] = "0". $input['hh']; 
+        }
+
+        if($input['mm'] < 10){
+        	$input['mm'] = "0". $input['mm']; 
+        }
+
+        $time = $input['hh'] . $input['mm'];
+
+        $input['draw_time'] = $time;
+
+        unset($input['hh']);
+        unset($input['mm']);
+
+        // dd($input);
+
         Lottery::create( $input );
      
-        return Redirect::route('lotteries.manage')->with('message', 'Lottery data created');
+        return view('lotteries.manage')->with('message', 'Lottery data created');
 	}
 
 	/**
@@ -92,9 +110,10 @@ class LotteriesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy(Lottery $lottery)
 	{
-		//
+		$project->delete();
+
 	}
 
 }
