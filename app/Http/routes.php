@@ -21,3 +21,9 @@ Route::controllers([
 	'admin' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+Route::group(array('prefix' => 'admin'), function() {
+
+	Route::resource('lotteries/manage', 'LotteriesController@index');
+
+});
