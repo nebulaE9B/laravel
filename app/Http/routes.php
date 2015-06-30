@@ -24,6 +24,6 @@ Route::controllers([
 
 Route::group(array('prefix' => 'admin'), function() {
 
-	Route::resource('lotteries/manage', 'LotteriesController@index');
+	Route::resource('lotteries/manage', 'LotteriesController');
 
 });
